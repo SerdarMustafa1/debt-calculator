@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Debt Snowball Avalanche Calculator</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="vendor/jquery-1.11.1.min.js"></script>
+	<script src="vendor/jquery.mobile-1.4.5.min.js"></script>
+	<script src="src/script.js"> </script>
+
+	<style> 
+	#submit-area div {
+		width: 50%;
+		float: left;
+	}
+	#extra-money {
+		float: left;
+		clear: both;
+	}
+	#submit{
+		margin: 15px 30px 0;
+	}
+
+	body {
+		max-width: 900px;
+		background-color: green;
+	}
+
+	#main-container {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 0 10px;
+	}
+	.method {
+		font-weight: bold;
+		margin-right: 10px;
+		display: block;
+	}
+	.total-paid, .total-months {
+		margin: 0 10px;
+	}
+	.title{
+		margin: 0 10px;
+	}
+	#results-container section{
+		line-height: 25px;
+		margin-bottom: 10px;
+	}
+	#results-container {
+		display: none;
+		margin-bottom: 25px;
+	}
+	#row-control {
+		float: right;
+	}
+	</style>
+</head>
+<body>
+	<div id="main-container">
+		<section>
+			<h1> Debt Repayment Calculator </h1>
+			<p> This calculator compares the different methods of repaying debts. It approximates the difference in savings and time by paying debts aggressively vs. passively.</p>
+		</section>
+
+		<div id="results-container">
+			<section id="summary">Beginning Balance:
+				<span id="original-bal"> </span>
+			</section>
+			<section id="interest-first">
+				<span class="method">Highest Interest First (Avalanche)</span>
+				<span class="title"> Total Paid <span class="total-paid"></span></span>
+				<span class="title"> Time: <span class="total-months"></span></span>
+			</section>
+			<section id="balance-first">
+				<span class="method">Lowest Balance First (Snowball)</span>
+				<span class="title"> Total Paid <span class="total-paid"></span></span>
+				<span class="titile"> Time: <span class="total-months"></span></span>
+			</section>
+			<section id="minimum">
+				<span class="method">Minimum payment</span>
+				<span class="title"> Total Paid <span class="total-paid"></span></span>
+				<span class="title"> Time: <span class="total-months"></span></span>
+			</section>
+			<p><b>Interest Compound method:</b> Daily</p>
+		</div>
+		<div id="entry-container">
+			<form method="POST" name="loanEntryForm" id="loanEntryForm" onsubmit="mySubmit(this); return false;">
+				<table class="entry">
+					<thead>
+						<tr>
+							<td>Name</td>
+							<td>Balance (5000)</td>
+							<td>Minimum Payment (200) </td>
+							<td>Interest Rate e.g (9.5)</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="text" name="name" value="Debt 1" required></td>
+							<td><input type="number" name="bal" value="5000" required step="any"></td>
+							<td><input type="number" name="payment" value="372" required step="any"></td>
+							<td><input type="number" name="intRate" value="7" required step="any"><input type="hidden" name="totalInterestPaid" value="0">
+								<input type="hidden" name="totalPaid" value="0"></td>
+						</tr>
+						<tr>
+							<td><input type="text" name="name" value="Debt 2" required></td>
+							<td><input type="number" name="bal" value="0" required step="any"></td>
+							<td><input type="number" name="payment" value="0" required step="any"></td>
+							<td><input type="number" name="intRate" value="0" required step="any"><input type="hidden" name="totalInterestPaid" value="0">
+								<input type="hidden" name="totalPaid" value="0"></td>
+						</tr>
+						<tr>
+							<td><input type="text" name="name" value="Debt 3" required></td>
+							<td><input type="number" name="bal" value="0" required step="any"></td>
+							<td><input type="number" name="payment" value="0" required step="any"></td>
+							<td><input type="number" name="intRate" value="0" required step="any"><input type="hidden" name="totalInterestPaid" value="0">
+								<input type="hidden" name="totalPaid" value="0"></td>
+						</tr>
+						<tr>
+							<td><input type="text" name="name" value="Debt 4" required></td>
+							<td><input type="number" name="bal" value="0" required step="any"></td>
+							<td><input type="number" name="payment" value="0" required step="any"></td>
+							<td><input type="number" name="intRate" value="0" required step="any"><input type="hidden" name="totalInterestPaid" value="0">
+								<input type="hidden" name="totalPaid" value="0"></td>
+						</tr>
+					</tbody>
+				</table>
+				<div id="row-control" data-role="controlgroup" data-type="horizontal">
+					<button id="add" data-mini="true" data-role="button" data-icon="plus">Add Row</button>
+					<button id="delete" data-mini="true" data-role="button" data-icon="delete">Delete Row</button>
+				</div>
+				<div id="extra-money"><span>Extra money</span><input id="extraMoney"type="number" name="extraMoney" value="0"></div>
+				<div id="submit-area">
+					<div id="submit"><input type="submit" value="calculate" data-icon="grid"></div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

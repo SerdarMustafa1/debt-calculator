@@ -1,0 +1,43 @@
+#submit-area div {
+	width: 50%;
+	float: left;
+}
+#extra-money {
+	float: left;
+	clear: both;
+}
+#submit{
+	margin: 15px 30px 0;
+}
+
+body {
+	max-width: 900px;
+}
+
+#main-container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+.method {
+	font-weight: bold;
+	margin-right: 10px;
+	display: block;
+}
+.total-paid, .total-months {
+	margin: 0 10px;
+}
+.title{
+	margin: 0 10px;
+}
+#results-container section{
+	line-height: 25px;
+	margin-bottom: 10px;
+}
+#results-container {
+	display: none;
+	margin-bottom: 25px;
+}
+#row-control {
+	float: right;
+}
